@@ -46,7 +46,14 @@ public class SecondActivity extends Activity {
                         try {
                             br = new BufferedReader(new FileReader(fileName));
                         } catch (FileNotFoundException e) {
-                            e.printStackTrace();
+                            try {
+                                FileWriter fw = new FileWriter(fileName);
+                                fw.write("");
+                                fw.close();
+                                br = new BufferedReader(new FileReader(fileName));
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                            }
                         }
 
                         String temp = "";
